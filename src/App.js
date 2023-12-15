@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Welcome from './components/Welcome';
 import SurveyForm from './components/SurveyForm';
 import Summary from './components/Summary';
@@ -12,7 +12,6 @@ const questions = [
   'Q5. What could we do to improve our service?',
 ];
 
-
 const App = () => {
   const [customerAnswers, setCustomerAnswers] = useState({});
 
@@ -24,11 +23,22 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Welcome onStart={() => window.location.href = '/survey'} />} />
-        <Route path="/survey" element={<SurveyForm questions={questions} onSubmit={handleSurveySubmit} />} />
-        <Route path="/summary" element={<Summary answers={customerAnswers} />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route
+            path="/"
+            element={<Welcome onStart={() => window.location.href = '/survey'} />}
+          />
+          <Route
+            path="/survey"
+            element={<SurveyForm questions={questions} onSubmit={handleSurveySubmit} />}
+          />
+          <Route
+            path="/summary"
+            element={<Summary answers={customerAnswers} />}
+          />
+        </Routes>
+      </div>
     </Router>
   );
 };
